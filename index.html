@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Request Access — Rice & Shine Order Board</title>
+<style>
+  :root {
+    color-scheme: light dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #fdf6ec;
+    color: #3a2e26;
+    padding: 24px;
+  }
+  .card {
+    max-width: 440px;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 40px 32px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    text-align: center;
+  }
+  .emoji {
+    font-size: 40px;
+    margin-bottom: 8px;
+  }
+  h1 {
+    font-size: 22px;
+    margin: 0 0 12px;
+    color: #b3542a;
+  }
+  p {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #5a4a3f;
+    margin: 0 0 24px;
+  }
+  label {
+    display: block;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #5a4a3f;
+  }
+  input[type="text"], input[type="email"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #e0d4c3;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 16px;
+    font-family: inherit;
+  }
+  input[type="text"]:focus, input[type="email"]:focus {
+    outline: none;
+    border-color: #b3542a;
+  }
+  .btn {
+    display: inline-block;
+    width: 100%;
+    padding: 12px 20px;
+    background: #b3542a;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .btn:hover {
+    background: #9a4623;
+  }
+  .footer-note {
+    font-size: 12px;
+    color: #9a8b7d;
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="emoji">🍙</div>
+    <h1>Request access to the order board</h1>
+    <p>The Rice & Shine order dashboard is private. Enter your name and email below, then tap the button to send a request — Tony will review it and add you if approved.</p>
+
+    <label for="name">Your name</label>
+    <input type="text" id="name" placeholder="e.g. Jamie Lee">
+
+    <label for="email">Your email</label>
+    <input type="email" id="email" placeholder="you@example.com">
+
+    <a id="sendBtn" class="btn" href="#">Send access request</a>
+
+    <p class="footer-note">This opens your email app with a message pre-filled to Tony. Nothing is sent automatically.</p>
+  </div>
+
+  <script>
+    const btn = document.getElementById('sendBtn');
+    function buildLink() {
+      const name = document.getElementById('name').value.trim() || '(name not entered)';
+      const email = document.getElementById('email').value.trim() || '(email not entered)';
+      const subject = encodeURIComponent('Access request: Rice & Shine order board');
+      const body = encodeURIComponent(
+        'Hi Tony,\n\nI would like access to the Rice & Shine order dashboard.\n\nName: ' + name + '\nEmail: ' + email + '\n\nThanks!'
+      );
+      return 'mailto:htran42595@gmail.com?subject=' + subject + '&body=' + body;
+    }
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.location.href = buildLink();
+    });
+  </script>
+</body>
+</html>
